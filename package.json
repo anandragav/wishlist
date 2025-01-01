@@ -1,0 +1,14 @@
+{
+  "name": "shopping-wishlist-extension",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "tsc && vite build",
+    "watch": "tsc -w"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.260",
+    "typescript": "^5.4.2",
+    "vite": "^5.1.4"
+  }
+}
