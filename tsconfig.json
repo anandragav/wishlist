@@ -7,7 +7,10 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "dist"
+    "jsx": "react-jsx",
+    "outDir": "dist",
+    "types": ["chrome", "node"],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"]
   },
   "include": ["src/**/*"]
 }

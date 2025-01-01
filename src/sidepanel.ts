@@ -5,7 +5,7 @@ import './components/ProductList';
 let wishlistFolderId: string | null = null;
 
 // Get wishlist folder ID
-chrome.runtime.sendMessage({ action: 'getWishlistFolder' }, async (response) => {
+chrome.runtime.sendMessage({ action: 'getWishlistFolder' }, async (response: { folderId: string }) => {
   wishlistFolderId = response.folderId;
   if (wishlistFolderId) {
     await loadProducts();
@@ -18,7 +18,7 @@ async function loadProducts() {
   const bookmarkManager = new BookmarkManager();
   const products = await bookmarkManager.getProducts(wishlistFolderId);
   
-  const productList = document.querySelector('product-list');
+  const productList = document.querySelector('product-list') as any;
   if (productList) {
     productList.data = products;
   }
@@ -26,13 +26,19 @@ async function loadProducts() {
 
 // View controls
 document.getElementById('gridView')?.addEventListener('click', () => {
-  document.querySelector('product-list')?.viewMode = 'grid';
+  const list = document.querySelector('product-list') as any;
+  if (list) {
+    list.viewMode = 'grid';
+  }
   document.getElementById('gridView')?.classList.add('active');
   document.getElementById('listView')?.classList.remove('active');
 });
 
 document.getElementById('listView')?.addEventListener('click', () => {
-  document.querySelector('product-list')?.viewMode = 'list';
+  const list = document.querySelector('product-list') as any;
+  if (list) {
+    list.viewMode = 'list';
+  }
   document.getElementById('listView')?.classList.add('active');
   document.getElementById('gridView')?.classList.remove('active');
 });
